@@ -3,23 +3,26 @@ require 'sinatra/base'
 require 'sinatra'
 require 'capybara/dsl'
 require 'selenium-webdriver'
+require_relative './lib/player.rb'
 
 class Battle < Sinatra::Base
 
   enable :sessions
 
+
+
   get '/play' do
     @attack = false
+    @first_user_name = $first_user.name
+    @second_user_name = $second_user.name
     @first_user_points = 100
     @second_user_points = 100
-    @first_user = session[:first_user]
-    @second_user = session[:second_user]
     erb(:play)
   end
 
   post '/names' do
-    session[:first_user] = params[:first_user]
-    session[:second_user] = params[:second_user]
+    $first_user = Player.new(params[:first_user])
+    $second_user = Player.new(params[:second_user])
     redirect '/play'
   end
 
@@ -29,9 +32,10 @@ class Battle < Sinatra::Base
 
   get '/attack' do
     @attack = true
+    # @first_user_name = $first_user.name
+    # @second_user_name = $second_user.name
     erb(:play)
   end
-
 
 
   run! if app_file == $0
