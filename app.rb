@@ -34,7 +34,7 @@ class Battle < Sinatra::Base
     @attack = true
     @first_user_name = $first_user.name
     @second_user_name = $second_user.name
-    $first_user.attack($second_user)
+    $first_user.game.attack($second_user)
     @second_user_hp = $second_user.HP
     erb(:play)
   end

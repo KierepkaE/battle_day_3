@@ -15,8 +15,8 @@ feature "user have HP points" do
 
     scenario 'subtract points after 2 player got hit' do
       sign_in_and_play()
+      # expect(page).not_to have_content "Jerry points: 100 HP"
       click_button("first_user_attack")
-      expect(page).not_to have_content "Jerry points: 100 HP"
       expect(page).to have_content "Jerry points: 90 HP"
     end
-end
+  end
