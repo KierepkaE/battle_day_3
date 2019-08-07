@@ -1,7 +1,8 @@
 <div style='text-align: center; font-size: 20px; padding: 10px; border: 1px solid black; letter-spacing: 2px; max-width: 80vw; margin: 0 auto; background-color: coral'>
 <%= @first_user_name %> vs <%= @second_user_name %>
+<p><%= @first_user_name%> points: <%= @first_user_hp%>  HP </p>
 <p><%= @second_user_name%> points: <%= @second_user_hp%>  HP </p>
- <form action='/attack' method='get'>
+ <form action='/attack' method='post'>
  <input type="submit" value="attack first user" name="second_user_attack">
  <input type="submit" value="attack second user" name="first_user_attack">
  </form>

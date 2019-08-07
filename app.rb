@@ -15,8 +15,9 @@ class Battle < Sinatra::Base
     @attack = false
     @first_user_name = $first_user.name
     @second_user_name = $second_user.name
-    @first_user_hp = 100
-    @second_user_hp = 100
+    @second_user_hp = $second_user.HP
+    @first_user_hp = $first_user.HP
+    @attack = params[:attack]
     erb(:play)
   end
 
@@ -30,13 +31,14 @@ class Battle < Sinatra::Base
     erb(:main)
   end
 
-  get '/attack' do
-    @attack = true
-    @first_user_name = $first_user.name
-    @second_user_name = $second_user.name
+  post '/attack' do
+    if params[:first_user_attack]
     $first_user.game.attack($second_user)
-    @second_user_hp = $second_user.HP
-    erb(:play)
+    else
+      $second_user.game.attack($first_user)
+    end
+
+    redirect '/play?attack=true'
   end
 
 
