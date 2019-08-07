@@ -18,7 +18,13 @@ class Battle < Sinatra::Base
     @second_user_hp = $second_user.HP
     @first_user_hp = $first_user.HP
     @attack = params[:attack]
-    erb(:play)
+    if @first_user_hp != 0 && @second_user_hp != 0
+      erb :play
+    elsif  @first_user_hp == 0
+      erb :second_user_win
+    else
+      erb :fist_user_win
+    end
   end
 
   post '/names' do
