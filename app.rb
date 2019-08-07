@@ -15,8 +15,8 @@ class Battle < Sinatra::Base
     @attack = false
     @first_user_name = $first_user.name
     @second_user_name = $second_user.name
-    @first_user_points = 100
-    @second_user_points = 100
+    @first_user_hp = 100
+    @second_user_hp = 100
     erb(:play)
   end
 
@@ -32,8 +32,10 @@ class Battle < Sinatra::Base
 
   get '/attack' do
     @attack = true
-    # @first_user_name = $first_user.name
-    # @second_user_name = $second_user.name
+    @first_user_name = $first_user.name
+    @second_user_name = $second_user.name
+    $first_user.attack($second_user)
+    @second_user_hp = $second_user.HP
     erb(:play)
   end
 

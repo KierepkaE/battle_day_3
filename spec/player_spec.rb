@@ -5,6 +5,8 @@ describe Player do
   subject(:player) {described_class.new(name)}
 
   it 'has a name' do
+    player.get_hit
     expect(player.name).to eq name
   end
+
 end
