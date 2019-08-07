@@ -9,4 +9,8 @@ describe Player do
     expect(player.name).to eq name
   end
 
+  it '#get_hit change HP' do
+    expect{subject.get_hit()}.to change{subject.HP}.by(-10)
+  end
+
 end
