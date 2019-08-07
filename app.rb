@@ -9,6 +9,7 @@ class Battle < Sinatra::Base
   enable :sessions
 
   get '/play' do
+    @attack = false
     @first_user_points = 100
     @second_user_points = 100
     @first_user = session[:first_user]
@@ -24,6 +25,11 @@ class Battle < Sinatra::Base
 
   get '/' do
     erb(:main)
+  end
+
+  get '/attack' do
+    @attack = true
+    erb(:play)
   end
 
 
