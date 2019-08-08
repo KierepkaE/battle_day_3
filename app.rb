@@ -10,7 +10,6 @@ class Battle < Sinatra::Base
   enable :sessions
 
   get '/play' do
-    @attack = false
     @first_user_name = $first_user.name
     @second_user_name = $second_user.name
     @second_user_hp = $second_user.HP
@@ -41,7 +40,6 @@ class Battle < Sinatra::Base
     elsif params[:second_user_attack]
       $second_user.game.attack($first_user)
     end
-
     redirect '/play?attack=true'
   end
 
