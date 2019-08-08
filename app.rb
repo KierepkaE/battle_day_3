@@ -9,8 +9,6 @@ class Battle < Sinatra::Base
 
   enable :sessions
 
-
-
   get '/play' do
     @attack = false
     @first_user_name = $first_user.name
@@ -23,7 +21,7 @@ class Battle < Sinatra::Base
     elsif  @first_user_hp == 0
       erb :second_user_win
     else
-      erb :fist_user_win
+      erb :first_user_win
     end
   end
 
