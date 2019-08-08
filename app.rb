@@ -4,7 +4,7 @@ require 'sinatra'
 require 'capybara/dsl'
 require 'selenium-webdriver'
 require_relative './lib/player.rb'
-
+require_relative './lib/game.rb'
 class Battle < Sinatra::Base
 
   enable :sessions
@@ -40,7 +40,7 @@ class Battle < Sinatra::Base
   post '/attack' do
     if params[:first_user_attack]
     $first_user.game.attack($second_user)
-    else
+    elsif params[:second_user_attack]
       $second_user.game.attack($first_user)
     end
 
